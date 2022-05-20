@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:tint="@color/black"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_baseline_location_off_24"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Location permission not enabled"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Please enable location permission for better experience"
+        android:gravity="center"
+        android:textSize="16sp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dialogButtonLocOpen"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_solid"
+        android:text="Enable device location"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dialogButtonCloseApp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/button_outline"
+        android:text=" Close app "
+        android:layout_marginBottom="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/black" />
+
+</LinearLayout>

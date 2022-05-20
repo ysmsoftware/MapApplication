@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.SaveLocationsActivity">
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Data"
+        android:textSize="30sp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/roadName_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Road name"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/black"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@id/app_name"/>
+    <EditText
+        android:id="@+id/et_titleData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="road name"
+        android:inputType="text"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:theme="@style/Theme.MapApplication"
+        app:layout_constraintTop_toBottomOf="@+id/roadName_data"
+        android:textColor="@color/black"
+        android:importantForAutofill="no" />
+    <TextView
+        android:id="@+id/actualRoadLength_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ACTUAL ROAD LENGTH (in meters)"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/black"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@id/et_titleData"/>
+    <EditText
+        android:id="@+id/et_actualRoadLength"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="actual road length"
+        android:inputType="text"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:theme="@style/Theme.MapApplication"
+        app:layout_constraintTop_toBottomOf="@+id/actualRoadLength_data"
+        android:textColor="@color/black"
+        android:importantForAutofill="no"
+        tools:ignore="TextFields" />
+    <TextView
+        android:id="@+id/actualRoadWidth_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ACTUAL ROAD WIDTH (in sq/ft)"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/black"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@id/et_actualRoadLength"/>
+    <EditText
+        android:id="@+id/et_actualRoadWidth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="actual road width"
+        android:inputType="text"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:theme="@style/Theme.MapApplication"
+        app:layout_constraintTop_toBottomOf="@+id/actualRoadWidth_data"
+        android:textColor="@color/black"
+        android:importantForAutofill="no"
+        tools:ignore="TextFields" />
+    <TextView
+        android:id="@+id/roadLength_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ROAD LENGTH AS PER RECORD (in meters)"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/black"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@id/et_actualRoadWidth"/>
+    <EditText
+        android:id="@+id/et_roadLength"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="road length"
+        android:inputType="text"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:theme="@style/Theme.MapApplication"
+        app:layout_constraintTop_toBottomOf="@+id/roadLength_data"
+        android:textColor="@color/black"
+        android:importantForAutofill="no"
+        tools:ignore="TextFields" />
+    <TextView
+        android:id="@+id/roadWidth_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ROAD WIDTH AS PER RECORD (in sq/ft)"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/black"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@id/et_roadLength"/>
+    <EditText
+        android:id="@+id/et_roadWidth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="road width"
+        android:inputType="text"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:theme="@style/Theme.MapApplication"
+        app:layout_constraintTop_toBottomOf="@+id/roadWidth_data"
+        android:textColor="@color/black"
+        android:importantForAutofill="no"
+        tools:ignore="TextFields" />
+    <TextView
+        android:id="@+id/pincode_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pincode"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/black"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@id/et_roadWidth"/>
+    <EditText
+        android:id="@+id/et_pincode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="pincode "
+        android:inputType="text"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:theme="@style/Theme.MapApplication"
+        app:layout_constraintTop_toBottomOf="@+id/pincode_data"
+        android:textColor="@color/black"
+        android:importantForAutofill="no" />
+
+    <TextView
+        android:id="@+id/customiseCode_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Customise Code"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/black"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@id/et_pincode"/>
+    <EditText
+        android:id="@+id/et_customiseCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="customise code"
+        android:inputType="text"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:theme="@style/Theme.MapApplication"
+        app:layout_constraintTop_toBottomOf="@+id/customiseCode_data"
+        android:textColor="@color/black"
+        android:importantForAutofill="no" />
+    <TextView
+        android:id="@+id/tv_loc_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lat/lng data"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/black"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@id/et_customiseCode"/>
+<ListView
+    android:id="@+id/secondAct"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:nestedScrollingEnabled="true"
+    app:layout_constraintTop_toBottomOf="@+id/tv_loc_data"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_solid"
+        android:text="Save"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/secondAct"
+        android:textColor="@color/white"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
