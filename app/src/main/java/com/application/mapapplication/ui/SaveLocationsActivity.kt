@@ -26,11 +26,12 @@ class SaveLocationsActivity : AppCompatActivity() {
         binding = ActivitySaveLocationsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         userManager = UserManager(applicationContext)
+        val distance = intent.getStringExtra("distance")
         val locationArray : ArrayList<String> = intent.getSerializableExtra("Key") as ArrayList<String>
         val roadCodeArray : ArrayList<Int> = intent.getSerializableExtra("KeyCodes") as ArrayList<Int>
         val roadSubCodeArray : ArrayList<Int> = intent.getSerializableExtra("KeySubCodes") as ArrayList<Int>
         val emptyArray: ArrayList<String> = ArrayList()
-
+        binding.etActualRoadLength.setText(distance)
         arrayAdapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1, locationArray)
         binding.secondAct.adapter = arrayAdapter
@@ -38,6 +39,7 @@ class SaveLocationsActivity : AppCompatActivity() {
         binding.saveBtn.setOnClickListener {
             if(binding.etTitleData.text.isNotEmpty()){
                 lifecycleScope.launch {
+                    viewModel.showProgressDialog(this@SaveLocationsActivity)
                     userManager.userIdFlow.asLiveData().observe(this@SaveLocationsActivity) { id ->
                         id?.let {
                             save = SendRoadData(0,binding.etActualRoadLength.text.toString(),binding.etActualRoadWidth.text.toString(),binding.etCustomiseCode.text.toString(),locationArray,binding.etPincode.text.toString()
@@ -57,12 +59,15 @@ class SaveLocationsActivity : AppCompatActivity() {
             viewModel.saveRoadData(save).let { response ->
                 try {
                     if(response.isSuccessful){
+                        viewModel.hideProgressDialog()
                         Toast.makeText(this@SaveLocationsActivity,response.body()!!.message,Toast.LENGTH_SHORT).show()
                         finish()
                     }else{
+                        viewModel.hideProgressDialog()
                         Toast.makeText(this@SaveLocationsActivity,"Error",Toast.LENGTH_SHORT).show()
                     }
                 }catch (e:Exception){
+                    viewModel.hideProgressDialog()
                     Toast.makeText(this@SaveLocationsActivity,"Error",Toast.LENGTH_SHORT).show()
                 }
             }

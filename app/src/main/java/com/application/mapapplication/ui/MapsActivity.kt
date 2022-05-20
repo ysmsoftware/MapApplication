@@ -21,7 +21,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.app.ActivityCompat
-import androidx.lifecycle.asLiveData
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat.setBackground
 import androidx.lifecycle.lifecycleScope
 import com.application.mapapplication.R
 import com.application.mapapplication.UserManager
@@ -33,6 +34,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.google.maps.android.SphericalUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -41,12 +43,18 @@ import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+    val handler2 = Handler()
+    val runnable2: Runnable = Runnable {
+        startLooping()
+    }
     private val viewModel: MapViewModel by viewModels()
     private lateinit var userManager: UserManager
     private val pERMISSION_ID = 42
     var handler: Handler = Handler()
     var runnable: Runnable? = null
-    var delay = 15000
+    var delay = 10000
+    var distance: Double? = null
+    var totalDistance: Double = 0.0
     val locationArray: ArrayList<LatLng> = ArrayList()
     val locStringArray: ArrayList<String> = ArrayList()
     val roadCodeArray: ArrayList<Int> = ArrayList()
@@ -82,8 +90,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         binding.startLoc.setOnClickListener {
-            binding.startLoc.visibility = View.GONE
-            binding.getPointsLoc.visibility = View.VISIBLE
+            binding.startLoc.isEnabled = false
+            binding.endLoc.isEnabled = true
+            binding.startLoc.background = ContextCompat.getDrawable(this@MapsActivity, R.drawable.button_red)
+            binding.endLoc.background = ContextCompat.getDrawable(this@MapsActivity, R.drawable.button_solid)
+           // binding.getPointsLoc.visibility = View.VISIBLE
             getStartLocation()
         }
         binding.getPointsLoc.setOnClickListener {
@@ -124,13 +135,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             popup.show()
         }
         binding.endLoc.setOnClickListener {
-            binding.startLoc.visibility = View.VISIBLE
-            binding.getPointsLoc.visibility = View.GONE
+            binding.startLoc.isEnabled = true
+            binding.endLoc.isEnabled = false
+            binding.startLoc.background = ContextCompat.getDrawable(this@MapsActivity, R.drawable.button_solid)
+            binding.endLoc.background = ContextCompat.getDrawable(this@MapsActivity, R.drawable.button_red)
+
+         //   binding.getPointsLoc.visibility = View.GONE
+
             val intent = Intent(this@MapsActivity,SaveLocationsActivity::class.java)
             intent.putExtra("Key",locStringArray)
             intent.putExtra("KeyCodes",roadCodeArray)
             intent.putExtra("KeySubCodes",roadSubCodeArray)
+            intent.putExtra("distance",String.format("%.2f", totalDistance))
             startActivity(intent)
+            handler2.removeCallbacks(runnable2)
+            totalDistance = 0.00
             locationArray.clear()
             locStringArray.clear()
             roadCodeArray.clear()
@@ -225,6 +244,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.mapType = GoogleMap.MAP_TYPE_HYBRID
         if(isLocationEnabled()){
             getCurrentLoc()
         }else{
@@ -288,10 +308,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     } else {
                         currentLocation = LatLng(location!!.latitude, location!!.longitude)
                         val stringLoc = location!!.latitude.toString()+","+location!!.longitude.toString()
+
                         locationArray.add(currentLocation)
                         locStringArray.add(stringLoc)
                         roadCodeArray.add(spinnerTxt)
                         roadSubCodeArray.add(subSpinnerTxt)
+                        distance = SphericalUtil.computeDistanceBetween(locationArray[locationArray.size - 2],locationArray[locationArray.size - 1])
+
+                        totalDistance += distance!!
                             polyline = mMap.addPolyline(
                                 PolylineOptions()
                                     .add(locationArray[locationArray.size -1],locationArray[locationArray.size -2]).color(color))
@@ -315,6 +339,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 roadCodeArray.add(spinnerTxt)
                 roadSubCodeArray.add(subSpinnerTxt)
                 drawMarker(currentLocation)
+                handler2.postDelayed(runnable2,5000)
             }
         }
     }
@@ -392,6 +417,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         handler.postDelayed(Runnable {
             handler.postDelayed(runnable!!, delay.toLong())
             requestNewLocationData()
+            //getLastLocation()
         }.also { runnable = it }, delay.toLong())
 
         super.onResume()
@@ -399,6 +425,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onPause() {
         super.onPause()
         handler.removeCallbacks(runnable!!)
+    }
+    //init
+    private fun startLooping() {
+        handler2.postDelayed(runnable2, 5000)
+        getLastLocation()
     }
 
 }

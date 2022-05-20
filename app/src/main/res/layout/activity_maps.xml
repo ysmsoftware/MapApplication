@@ -29,13 +29,14 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/end_loc"
+        android:enabled="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/map"
         android:layout_alignBottom="@+id/map"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/button_solid"
+        android:background="@drawable/button_red"
         android:text="End"
         android:textColor="@color/white" />
 

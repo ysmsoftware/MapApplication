@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/drawable/button.xml" value="0.157" />
+        <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/drawable/button_red.xml" value="0.1275" />
         <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/drawable/button_solid.xml" value="0.157" />
         <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.157" />
         <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/drawable/ic_baseline_location_off_24.xml" value="0.157" />
+        <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/drawable/ic_baseline_location_searching_24.xml" value="0.1275" />
         <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.157" />
         <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/drawable/intro_bg.xml" value="0.157" />
         <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/drawable/white_border.xml" value="0.157" />
@@ -24,6 +26,7 @@
         <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/layout/data_item.xml" value="0.1" />
         <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/layout/location_dialog.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/layout/mapData_item.xml" value="0.33" />
+        <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/layout/progress_bar.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/layout/show_latlng_item.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/android/AndroidStudioProjects/MapApplication/app/src/main/res/menu/map_menu.xml" value="0.17192982456140352" />
       </map>

@@ -1,6 +1,7 @@
 package com.application.mapapplication.viewmodel
 
 import android.app.Activity
+import android.app.Dialog
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import com.application.mapapplication.api.ApiService
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class MapViewModel
 @Inject
 constructor(private val mapRepository: MapRepository): ViewModel() {
+    private lateinit var mProgressDialog: Dialog
     suspend fun loginUser(loginData: LoginData) = mapRepository.loginUser(loginData)
     suspend fun signUpUser(userDetails: UserDetails) = mapRepository.signUpUser(userDetails)
     suspend fun getTalukaList() = mapRepository.getTalukaList()
@@ -27,10 +29,18 @@ constructor(private val mapRepository: MapRepository): ViewModel() {
     suspend fun findByRoadId(roadId: Int) = mapRepository.findByRoadId(roadId)
     suspend fun findByUserId(userId: Int) = mapRepository.findByUserId(userId)
     suspend fun deleteRoadDataById(roadId: Int) = mapRepository.deleteRoadDataById(roadId)
-
+    fun showProgressDialog(activity: Activity) {
+        mProgressDialog = Dialog(activity)
+        mProgressDialog.setContentView(R.layout.progress_bar)
+        mProgressDialog.setCancelable(false)
+        mProgressDialog.show()
+    }
     fun showErrorSnackBar(activity: Activity,snackBar: Snackbar) {
         val snackBarView = snackBar.view
         snackBarView.setBackgroundColor(ContextCompat.getColor(activity, R.color.red))
         snackBar.show()
+    }
+    fun hideProgressDialog() {
+        mProgressDialog.dismiss()
     }
 }

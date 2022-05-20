@@ -132,6 +132,7 @@ class SignUpActivity : AppCompatActivity() {
                             if(response.isSuccessful){
                                 Toast.makeText(this@SignUpActivity, response.body()!!.message, Toast.LENGTH_SHORT).show()
                                 startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
+                                finish()
                             }else{
                                 Toast.makeText(this@SignUpActivity, "Error", Toast.LENGTH_SHORT).show()
                             }
